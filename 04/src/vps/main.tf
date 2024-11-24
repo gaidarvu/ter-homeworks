@@ -34,7 +34,8 @@ resource "yandex_compute_instance" "devops" {
   }
   network_interface {
     subnet_id       = yandex_vpc_subnet.devops.id
-    nat             = each.value.network_interface
+    nat             = var.public_ip
+    security_group_ids = [yandex_vpc_security_group.example.id]
   }
 
   metadata = {

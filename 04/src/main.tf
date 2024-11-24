@@ -9,7 +9,7 @@ resource "yandex_vpc_subnet" "develop" {
 }
 
 module "marketing_vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=0049a0c47c805c2552e16f7bca2581a7feae0f14"
   env_name       = "develop" 
   network_id     = yandex_vpc_network.develop.id
   subnet_zones   = ["ru-central1-a", "ru-central1-b"]
@@ -31,7 +31,7 @@ module "marketing_vm" {
 }
 
 module "analytics_vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=0049a0c47c805c2552e16f7bca2581a7feae0f14"
   env_name       = "stage"
   network_id     = yandex_vpc_network.develop.id
   subnet_zones   = ["ru-central1-a"]
@@ -57,7 +57,8 @@ module "devops" {
   source         = "./vps"
   default_zone   = "ru-central1-a"
   default_cidr   = ["10.0.2.0/24"]
-  vpc_name       = "net_dev"
+  vpc_name       = "net_dev"  
+  public_ip      = false
 
   metadata = {
     user-data          = data.template_file.cloudinit.rendered

@@ -21,6 +21,11 @@ variable "metadata" {
   default = {}
 }
 
+variable "public_ip" {
+  type    = bool
+  default = false
+}
+
 variable "each_vm" {
   type = map(object({
     platform_id=string
@@ -30,7 +35,6 @@ variable "each_vm" {
     core_fraction=number
     type=string
     disk_volume=number
-    network_interface=bool
     scheduling_policy=bool
     }))
   default = {
@@ -42,7 +46,6 @@ variable "each_vm" {
       core_fraction=5
       type="network-hdd"
       disk_volume=10
-      network_interface=true
       scheduling_policy=true
     }
     "ops" = {
@@ -53,7 +56,6 @@ variable "each_vm" {
       core_fraction=20
       type="network-hdd"
       disk_volume=20
-      network_interface=true
       scheduling_policy=true      
     }
   }
