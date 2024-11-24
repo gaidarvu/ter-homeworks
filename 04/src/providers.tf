@@ -1,7 +1,12 @@
 terraform {
   required_providers {
+    template = {
+      source  = "hashicorp/template"
+      version = ">= 2.2"
+    }
     yandex = {
       source = "yandex-cloud/yandex"
+      version = ">= 0.132"
     }
   }
   required_version = "~>1.8.4"
@@ -29,4 +34,7 @@ provider "yandex" {
   cloud_id  = var.cloud_id
   folder_id = var.folder_id
   zone      = var.default_zone
+}
+
+provider "template" {
 }
